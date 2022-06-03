@@ -40,7 +40,7 @@ public class controller {
     }
 
     @POST
-    @Path("/agree")
+    @Path("/agregar")
     @Produces(APPLICATION_JSON)
     public Uni<Response> cargarAceptacion(AceptacionTyC aceptacionTyC) {
         if(aceptacionTyC.getTipoDocumento().equalsIgnoreCase("Cedula")||
