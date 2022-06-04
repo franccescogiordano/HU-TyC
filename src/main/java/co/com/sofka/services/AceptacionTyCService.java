@@ -13,12 +13,7 @@ import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 @ApplicationScoped
-@Produces
 public class AceptacionTyCService {
-
-
-
-    private final Logger log = LoggerFactory.getLogger(AceptacionTyCService.class);
 
     @Inject
     AceptacionRepository repository;

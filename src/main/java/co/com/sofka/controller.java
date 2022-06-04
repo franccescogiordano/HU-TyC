@@ -6,6 +6,7 @@ import co.com.sofka.services.AceptacionTyCService;
 import co.com.sofka.services.TyCService;
 import io.smallrye.mutiny.Uni;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -15,8 +16,8 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.Response.Status.NOT_ACCEPTABLE;
 
 @Path("/api/TyC")
-@Consumes("application/json")
-@Produces("application/json")
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 public class controller {
 
     @Inject
@@ -26,6 +27,8 @@ public class controller {
     AceptacionTyCService aceptacionTyCService;
 
     @POST
+    @Path("/cargarTyC")
+    @Consumes(APPLICATION_JSON)
     public Uni<Response> createTermsConditions(TerminosYCondiciones terminosYCondiciones) {
         return tYCService.agregarTyC(terminosYCondiciones)
                 .map(termsConditions ->Response.ok(termsConditions).build());
@@ -33,15 +36,15 @@ public class controller {
 
     @GET
     @Path("/consultar")
-    @Produces("application/json")
+    @Produces(MediaType.APPLICATION_JSON)
     public Uni<Response> obtenerTerminosyCondiciones(){
         return tYCService.obtenerElUltimo()
                 .map(termsConditions -> Response.ok(termsConditions).build());
     }
 
     @POST
-    @Path("/agregar")
-    @Produces("application/json")
+    @Path("/agregarAceptacion")
+    @Produces(MediaType.APPLICATION_JSON)
     public Uni<Response> cargarAceptacion(AceptacionTyC aceptacionTyC) {
         if(aceptacionTyC.getTipoDocumento().equalsIgnoreCase("Cedula")||
                 aceptacionTyC.getTipoDocumento().equalsIgnoreCase("Pasaporte")){

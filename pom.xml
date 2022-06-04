@@ -13,7 +13,7 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
     <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
-    <quarkus.platform.version>2.9.1.Final</quarkus.platform.version>
+    <quarkus.platform.version>2.9.2.Final</quarkus.platform.version>
     <surefire-plugin.version>3.0.0-M5</surefire-plugin.version>
   </properties>
   <dependencyManagement>
@@ -28,7 +28,6 @@
     </dependencies>
   </dependencyManagement>
   <dependencies>
-    <dependency> 			<groupId>com.google.guava</groupId> 			<artifactId>guava</artifactId> 			<version>16.0</version> 		</dependency>
     <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-resteasy-reactive</artifactId>
@@ -38,6 +37,9 @@
       <artifactId>quarkus-mongodb-panache</artifactId>
     </dependency>
 
+    <dependency>       <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-resteasy-reactive-jackson</artifactId>
+    </dependency>
 
 
     <dependency>

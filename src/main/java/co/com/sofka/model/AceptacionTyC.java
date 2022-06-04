@@ -1,10 +1,7 @@
 package co.com.sofka.model;
-
 import io.quarkus.mongodb.panache.common.MongoEntity;
 import org.bson.types.ObjectId;
-
 import java.time.LocalDate;
-
 @MongoEntity(collection = "AceptacionTyC")
 public class AceptacionTyC {
     public ObjectId id;

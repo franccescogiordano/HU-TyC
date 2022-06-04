@@ -1,18 +1,13 @@
 package co.com.sofka.services;
 import co.com.sofka.model.TerminosYCondiciones;
 import co.com.sofka.repository.TerminosYCondicionesRepository;
-import io.smallrye.mutiny.Multi;
 import io.smallrye.mutiny.Uni;
-
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.ws.rs.Produces;
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.List;
+
 
 @ApplicationScoped
-@Produces
 public class TyCService {
 
 
@@ -20,7 +15,10 @@ public class TyCService {
     TerminosYCondicionesRepository repository;
 
     public Uni<TerminosYCondiciones> agregarTyC(TerminosYCondiciones terminosYCondiciones) {
-        return repository.findAllTyC().map(cantidadVersiones -> new TerminosYCondiciones(terminosYCondiciones.getTexto(), cantidadVersiones.intValue()+1, LocalDate.now()));
+        return repository.findAllTyC().map(cantidadVersiones ->
+                new TerminosYCondiciones(terminosYCondiciones.getTexto(),
+                        cantidadVersiones.intValue()+1,
+                        LocalDate.now())).flatMap(repository::persist);
     }
 
 
