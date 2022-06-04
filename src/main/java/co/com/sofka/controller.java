@@ -15,8 +15,8 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.Response.Status.NOT_ACCEPTABLE;
 
 @Path("/api/TyC")
-@Consumes(MediaType.APPLICATION_JSON)
-@Produces(MediaType.APPLICATION_JSON)
+@Consumes("application/json")
+@Produces("application/json")
 public class controller {
 
     @Inject
@@ -33,7 +33,7 @@ public class controller {
 
     @GET
     @Path("/consultar")
-    @Produces(APPLICATION_JSON)
+    @Produces("application/json")
     public Uni<Response> obtenerTerminosyCondiciones(){
         return tYCService.obtenerElUltimo()
                 .map(termsConditions -> Response.ok(termsConditions).build());
@@ -41,7 +41,7 @@ public class controller {
 
     @POST
     @Path("/agregar")
-    @Produces(APPLICATION_JSON)
+    @Produces("application/json")
     public Uni<Response> cargarAceptacion(AceptacionTyC aceptacionTyC) {
         if(aceptacionTyC.getTipoDocumento().equalsIgnoreCase("Cedula")||
                 aceptacionTyC.getTipoDocumento().equalsIgnoreCase("Pasaporte")){

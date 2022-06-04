@@ -6,11 +6,13 @@ import io.smallrye.mutiny.Uni;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.ws.rs.Produces;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
 
 @ApplicationScoped
+@Produces
 public class TyCService {
 
 
