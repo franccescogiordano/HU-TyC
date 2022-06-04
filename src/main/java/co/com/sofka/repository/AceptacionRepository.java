@@ -8,5 +8,5 @@ import org.bson.types.ObjectId;
 import javax.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
-public class AceptacionRepository implements ReactivePanacheMongoRepository<AceptacionTyC> {
+public class AceptacionRepository implements ReactivePanacheMongoRepositoryBase<AceptacionTyC,ObjectId> {
 }

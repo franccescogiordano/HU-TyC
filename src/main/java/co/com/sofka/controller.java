@@ -2,6 +2,7 @@ package co.com.sofka;
 
 import co.com.sofka.model.AceptacionTyC;
 import co.com.sofka.model.TerminosYCondiciones;
+import co.com.sofka.repository.AceptacionRepository;
 import co.com.sofka.services.AceptacionTyCService;
 import co.com.sofka.services.TyCService;
 import io.smallrye.mutiny.Uni;
@@ -16,8 +17,8 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.Response.Status.NOT_ACCEPTABLE;
 
 @Path("/api/TyC")
-@Consumes(MediaType.APPLICATION_JSON)
-@Produces(MediaType.APPLICATION_JSON)
+@Consumes("application/json")
+@Produces("application/json")
 public class controller {
 
     @Inject
@@ -29,13 +30,13 @@ public class controller {
     @POST
     @Path("/cargarTyC")
     @Consumes(APPLICATION_JSON)
-    public Uni<Response> createTermsConditions(TerminosYCondiciones terminosYCondiciones) {
+    public Uni<Response> crearTyC(TerminosYCondiciones terminosYCondiciones) {
         return tYCService.agregarTyC(terminosYCondiciones)
                 .map(termsConditions ->Response.ok(termsConditions).build());
     }
 
     @GET
-    @Path("/consultar")
+    @Path("/obtenerElUltimo")
     @Produces(MediaType.APPLICATION_JSON)
     public Uni<Response> obtenerTerminosyCondiciones(){
         return tYCService.obtenerElUltimo()
@@ -44,17 +45,19 @@ public class controller {
 
     @POST
     @Path("/agregarAceptacion")
-    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes("application/json")
     public Uni<Response> cargarAceptacion(AceptacionTyC aceptacionTyC) {
-        if(aceptacionTyC.getTipoDocumento().equalsIgnoreCase("Cedula")||
+      if(aceptacionTyC.getTipoDocumento().equalsIgnoreCase("Cedula")||
                 aceptacionTyC.getTipoDocumento().equalsIgnoreCase("Pasaporte")){
 
             return aceptacionTyCService.agregarAceptacion(aceptacionTyC)
                     .map(acepTermsC -> Response.ok(acepTermsC).build())
                     .onFailure().
-                    recoverWithItem(() -> Response.status(NOT_ACCEPTABLE).build());
+                    recoverWithItem(() -> Response.status(200).build());
         }
         return Uni.createFrom().item(Response.status(NOT_ACCEPTABLE).build());
+
+
     }
 
 }
