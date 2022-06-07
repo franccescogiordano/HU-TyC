@@ -22,6 +22,9 @@ public class TyCService {
     }
 
 
+    public Uni<TerminosYCondiciones> obtenerPorVersion(Integer version) {
+        return repository.findByVersion(version).map(terminosYCondiciones -> terminosYCondiciones);
+    }
 
     public Uni<TerminosYCondiciones> obtenerElUltimo(){
         return repository.findAll().list()

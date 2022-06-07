@@ -12,6 +12,6 @@ public class TerminosYCondicionesRepository implements ReactivePanacheMongoRepos
     public Uni<Integer> findAllTyC(){
         return  findAll().count().onItem().transform(size->size.intValue());
     }
-
+    public Uni<TerminosYCondiciones> findByVersion(Integer version){return find("version",version).firstResult();};
 
 }

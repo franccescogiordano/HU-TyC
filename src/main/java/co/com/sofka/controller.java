@@ -43,6 +43,13 @@ public class controller {
                 .map(termsConditions -> Response.ok(termsConditions).build());
     }
 
+    @GET
+    @Path("/obtenerPorVersion/{version}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Uni<Response> obtenerPorVersion(Integer version){
+        return tYCService.obtenerPorVersion(version)
+                .map(termsConditions -> Response.ok(termsConditions).build());
+    }
     @POST
     @Path("/agregarAceptacion")
     @Consumes("application/json")

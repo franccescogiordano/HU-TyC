@@ -32,7 +32,7 @@ public class AceptacionTyCService {
     }
 
     public Uni<String> agregarAceptacionConCedula(AceptacionTyC aceptTyC){
-        String regex ="[0-9]{2}-PN{2}-[0-9]{2}-[0-9]{4}";
+        String regex ="[0-9]{2}-PN-[0-9]{3}-[0-9]{4}";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(aceptTyC.getNumDoc());
         Boolean verificar = matcher.matches();
