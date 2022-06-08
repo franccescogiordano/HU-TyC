@@ -20,6 +20,14 @@ public class TerminosYCondiciones {
         this.texto = texto;
     }
 
+    public ObjectId getId() {
+        return id;
+    }
+
+    public void setId(ObjectId id) {
+        this.id = id;
+    }
+
     public Integer getVersion() {
         return version;
     }
@@ -43,6 +51,13 @@ public class TerminosYCondiciones {
         this.texto = texto;
         this.version = version;
         this.fechaCreacion = fechaCreacion;
+    }
+
+    public TerminosYCondiciones(ObjectId id,String texto, Integer version, LocalDate fechaCreacion) {
+        this.texto = texto;
+        this.version = version;
+        this.fechaCreacion = fechaCreacion;
+        this.id=id;
     }
 
 }
