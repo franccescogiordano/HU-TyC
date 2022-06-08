@@ -42,6 +42,14 @@ public class AceptacionTyC {
         this.versionTyC=versionTyC;
     }
 
+    public AceptacionTyC(ObjectId id, String tipoDocumento, String numDoc, LocalDate fechaAceptacion, String versionTyC) {
+        this.id = id;
+        this.tipoDocumento = tipoDocumento;
+        this.numDoc = numDoc;
+        this.fechaAceptacion = fechaAceptacion;
+        this.versionTyC = versionTyC;
+    }
+
     public AceptacionTyC() {
 
     }
