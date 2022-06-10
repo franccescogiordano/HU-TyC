@@ -1,6 +1,7 @@
 package co.com.sofka.services;
 
 import co.com.sofka.model.AceptacionTyC;
+import co.com.sofka.model.DTOTrucheli;
 import co.com.sofka.repository.AceptacionRepository;
 import io.smallrye.mutiny.Uni;
 import org.slf4j.Logger;
@@ -31,7 +32,7 @@ public class AceptacionTyCService {
                 });
     }
 
-    public Uni<String> agregarAceptacionConCedula(AceptacionTyC aceptTyC){
+    public Uni<DTOTrucheli> agregarAceptacionConCedula(AceptacionTyC aceptTyC){
         String regex ="[0-9]{2}-PN-[0-9]{3}-[0-9]{4}";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(aceptTyC.getNumDoc());
@@ -41,13 +42,12 @@ public class AceptacionTyCService {
             return Uni.createFrom()
                     .item(aceptTyC)
                     .flatMap(repository::persist)
-                    .map(aceptacion -> "Acepto terminos y condiciones con el documento "+aceptTyC.getNumDoc()+
-                            "Documento verificado del tipo "+aceptTyC.getTipoDocumento());
+                    .map(aceptacion -> new DTOTrucheli("Acepto terminos y condiciones con el documento "+aceptTyC.getNumDoc()+ "Documento verificado del tipo "+aceptTyC.getTipoDocumento()));
         }
         throw new IllegalArgumentException();
     }
 
-    public Uni<String> agregarAceptacionConPasaporte(AceptacionTyC aceptTyC){
+    public Uni<DTOTrucheli> agregarAceptacionConPasaporte(AceptacionTyC aceptTyC){
         String regex ="[a-zA-Z0-9-]{5,16}";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(aceptTyC.getNumDoc());
@@ -57,8 +57,7 @@ public class AceptacionTyCService {
             return Uni.createFrom()
                     .item(aceptTyC)
                     .flatMap(repository::persist)
-                    .map(aceptacion -> "Acepto terminos y condiciones con el documento "+aceptTyC.getNumDoc()+
-                            "Documento verificado del tipo "+aceptTyC.getTipoDocumento());
+                    .map(aceptacion -> new DTOTrucheli("Acepto terminos y condiciones con el documento "+aceptTyC.getNumDoc()+ "Documento verificado del tipo "+aceptTyC.getTipoDocumento()));
         }
         throw new IllegalArgumentException();
     }

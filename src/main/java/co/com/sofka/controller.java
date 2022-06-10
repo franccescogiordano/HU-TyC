@@ -60,7 +60,7 @@ public class controller {
             return aceptacionTyCService.agregarAceptacion(aceptacionTyC)
                     .map(acepTermsC -> Response.ok(acepTermsC).build())
                     .onFailure().
-                    recoverWithItem(() -> Response.status(200).build());
+                    recoverWithItem(() -> Response.status(500).build());
         }
         return Uni.createFrom().item(Response.status(NOT_ACCEPTABLE).build());
 
