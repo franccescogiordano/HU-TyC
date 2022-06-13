@@ -1,13 +1,15 @@
 package co.com.sofka.model;
 import io.quarkus.mongodb.panache.common.MongoEntity;
 import org.bson.types.ObjectId;
-import java.time.LocalDate;
+
+import java.time.Instant;
+
 @MongoEntity(collection = "AceptacionTyC")
 public class AceptacionTyC {
     public ObjectId id;
     private String tipoDocumento;
     private String numDoc;
-    private LocalDate fechaAceptacion;
+    private Instant fechaAceptacion;
     private String versionTyC;
 
     public String getTipoDocumento() {
@@ -26,15 +28,15 @@ public class AceptacionTyC {
         this.numDoc = numDoc;
     }
 
-    public LocalDate getFechaAceptacion() {
+    public Instant getFechaAceptacion() {
         return fechaAceptacion;
     }
 
-    public void setFechaAceptacion(LocalDate fechaAceptacion) {
+    public void setFechaAceptacion(Instant fechaAceptacion) {
         this.fechaAceptacion = fechaAceptacion;
     }
 
-    public AceptacionTyC(String tipoDocumento, String numDoc, LocalDate fechaAceptacion,String versionTyC)
+    public AceptacionTyC(String tipoDocumento, String numDoc, Instant fechaAceptacion, String versionTyC)
  {
         this.tipoDocumento = tipoDocumento;
         this.numDoc = numDoc;
@@ -42,7 +44,7 @@ public class AceptacionTyC {
         this.versionTyC=versionTyC;
     }
 
-    public AceptacionTyC(ObjectId id, String tipoDocumento, String numDoc, LocalDate fechaAceptacion, String versionTyC) {
+    public AceptacionTyC(ObjectId id, String tipoDocumento, String numDoc, Instant fechaAceptacion, String versionTyC) {
         this.id = id;
         this.tipoDocumento = tipoDocumento;
         this.numDoc = numDoc;

@@ -4,13 +4,11 @@ import co.com.sofka.model.AceptacionTyC;
 import co.com.sofka.model.DTOTrucheli;
 import co.com.sofka.repository.AceptacionRepository;
 import io.smallrye.mutiny.Uni;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.ws.rs.Produces;
-import java.time.LocalDate;
+import java.time.Instant;
+import java.time.ZonedDateTime;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 @ApplicationScoped
@@ -23,11 +21,11 @@ public class AceptacionTyCService {
 
         return Uni.createFrom().item(aceptTyC)
                 .flatMap(aceptacion->{
-                    aceptacion.setFechaAceptacion(LocalDate.now());
+                    aceptacion.setFechaAceptacion(Instant.now());
                     if (aceptacion.getTipoDocumento().equalsIgnoreCase("Cedula")){
                         return agregarAceptacionConCedula(aceptacion);
                     }
-                    aceptacion.setFechaAceptacion(LocalDate.now());
+                    aceptacion.setFechaAceptacion(ZonedDateTime.now().toInstant());
                     return agregarAceptacionConPasaporte(aceptacion);
                 });
     }

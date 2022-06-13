@@ -4,9 +4,7 @@ import co.com.sofka.repository.TerminosYCondicionesRepository;
 import io.smallrye.mutiny.Uni;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
+import java.time.*;
 
 
 @ApplicationScoped
@@ -16,18 +14,15 @@ public class TyCService {
     @Inject
     TerminosYCondicionesRepository repository;
 
-    public Uni<TerminosYCondiciones> agregarTyC(TerminosYCondiciones terminosYCondiciones) {
+    public Uni<? extends TerminosYCondiciones> agregarTyC(TerminosYCondiciones terminosYCondiciones) {
         return repository.findAllTyC().map(cantidadVersiones ->
                 new TerminosYCondiciones(terminosYCondiciones.getTexto(),
                         cantidadVersiones.intValue()+1,
                         obtenerFecha())).flatMap(repository::persist);
     }
 
-    public LocalDate obtenerFecha(){
-        Instant instant = Instant.now();
-        ZoneId zone = ZoneId.of("UTC+00:00");
-        LocalDate date = LocalDate.ofInstant(instant, zone);
-        return date;
+    public Instant obtenerFecha(){
+        return  ZonedDateTime.now().toInstant();
     }
 
     public Uni<TerminosYCondiciones> obtenerPorVersion(Integer version) {

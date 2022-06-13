@@ -3,14 +3,14 @@ package co.com.sofka.model;
 import io.quarkus.mongodb.panache.common.MongoEntity;
 import org.bson.types.ObjectId;
 
-import java.time.LocalDate;
+import java.time.Instant;
 
 @MongoEntity(collection = "TerminosYCondiciones")
 public class TerminosYCondiciones {
     public ObjectId id;
     private String texto;
     private Integer version;
-    private LocalDate fechaCreacion;
+    private Instant fechaCreacion;
 
     public String getTexto() {
         return texto;
@@ -36,24 +36,24 @@ public class TerminosYCondiciones {
         this.version = version;
     }
 
-    public LocalDate getFechaCreacion() {
+    public Instant getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public void setFechaCreacion(LocalDate fechaCreacion) {
+    public void setFechaCreacion(Instant fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
     public TerminosYCondiciones(){
 
     }
 
-    public TerminosYCondiciones(String texto, Integer version, LocalDate fechaCreacion) {
+    public TerminosYCondiciones(String texto, Integer version, Instant fechaCreacion) {
         this.texto = texto;
         this.version = version;
         this.fechaCreacion = fechaCreacion;
     }
 
-    public TerminosYCondiciones(ObjectId id,String texto, Integer version, LocalDate fechaCreacion) {
+    public TerminosYCondiciones(ObjectId id, String texto, Integer version, Instant fechaCreacion) {
         this.texto = texto;
         this.version = version;
         this.fechaCreacion = fechaCreacion;

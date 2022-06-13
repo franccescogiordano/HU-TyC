@@ -6,15 +6,12 @@ import io.quarkus.test.junit.QuarkusTest;
 import io.quarkus.test.junit.mockito.InjectMock;
 import io.smallrye.mutiny.Uni;
 import org.bson.types.ObjectId;
-import org.gradle.internal.impldep.javax.inject.Inject;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import java.time.LocalDate;
-
-import static org.junit.jupiter.api.Assertions.*;
+import java.time.Instant;
 
 @QuarkusTest
 class AceptacionTyCServiceTest {
@@ -28,7 +25,7 @@ class AceptacionTyCServiceTest {
     private AceptacionTyC aceptacionTyC;
     private AceptacionTyC aceptacionTyC2;
 
-    private final LocalDate date=LocalDate.now();
+    private final Instant date= Instant.now();
 
     private final ObjectId id = new ObjectId("62a0c1034a8d71536568fdf4");
 

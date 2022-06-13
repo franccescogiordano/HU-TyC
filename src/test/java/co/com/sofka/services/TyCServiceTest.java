@@ -6,18 +6,16 @@ import io.quarkus.test.junit.QuarkusTest;
 import io.quarkus.test.junit.mockito.InjectMock;
 import io.smallrye.mutiny.Uni;
 import org.bson.types.ObjectId;
-import org.gradle.internal.impldep.javax.inject.Inject;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-import java.time.LocalDate;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 @QuarkusTest
 class TyCServiceTest {
 
@@ -32,7 +30,7 @@ class TyCServiceTest {
     private   Uni<List> uniList;
 
     private List<TerminosYCondiciones> list;
-    private final LocalDate date = LocalDate.now();
+    private final Instant date = Instant.now();
     private final ObjectId id = new ObjectId("62a0c1034a8d71536568fdf4");
     private final String txt = "Terminos y condiciones version 8";
     private final Integer v = 8;
@@ -79,7 +77,7 @@ class TyCServiceTest {
     @Test
     void obtenerElUltimo() {
 
-        LocalDate date = LocalDate.now();
+        Instant date = Instant.now();
 
         List<TerminosYCondiciones> list = new ArrayList<>();
         list.add(new TerminosYCondiciones(txt,1,date));
