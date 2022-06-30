@@ -29,7 +29,7 @@ public class ATyC_Controller {
     public Uni<Response> cargarAceptacion(AceptacionTyC aceptacionTyC) {
         if(aceptacionTyC.getTipoDocumento().equalsIgnoreCase("Cedula")||
                 aceptacionTyC.getTipoDocumento().equalsIgnoreCase("Pasaporte")){
-
+            System.out.println("ENTRE AL IF DE PASAPORTE O CEDULA");
             return aceptacionTyCService.agregarAceptacion(aceptacionTyC)
                     .map(acepTermsC -> Response.ok(acepTermsC).build())
                     .onFailure().

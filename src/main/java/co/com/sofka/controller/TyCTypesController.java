@@ -13,7 +13,7 @@ import javax.ws.rs.core.Response;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
-@Path("/api/TyC")
+@Path("/api/tiposTyC")
 @Consumes("application/json")
 @Produces("application/json")
 public class TyCTypesController {
@@ -21,7 +21,7 @@ public class TyCTypesController {
     TipoDocumentoService service;
     
     @POST
-    @Path("/cargarTyC")
+    @Path("/cargarTipo")
     @Consumes(APPLICATION_JSON)
     public Uni<Response> crearTyC(TipoDocumento tipoDoc) {
         return service.agregarTipoDoc(tipoDoc)

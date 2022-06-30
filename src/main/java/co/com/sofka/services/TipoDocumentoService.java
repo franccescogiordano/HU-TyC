@@ -7,11 +7,13 @@ import co.com.sofka.repository.TipoDocumentoRepository;
 import io.smallrye.mutiny.Multi;
 import io.smallrye.mutiny.Uni;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import java.time.Instant;
 import java.time.ZonedDateTime;
 import java.util.List;
 
+@ApplicationScoped
 public class TipoDocumentoService {
     @Inject
     TipoDocumentoRepository repository;
