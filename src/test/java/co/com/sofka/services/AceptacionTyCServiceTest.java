@@ -60,7 +60,7 @@ class AceptacionTyCServiceTest {
     void agregarAceptacionConCedula() {
         Mockito.when(repository.persist(aceptacionTyC)).thenReturn(Uni.createFrom().item(aceptacionTyC));
 
-        service.agregarAceptacionConCedula(aceptacionTyC).subscribe().with(dx -> {
+        service.agregarAceptacionConPasaporte(aceptacionTyC).subscribe().with(dx -> {
             Assertions.assertNotNull(dx);
         });
     }
