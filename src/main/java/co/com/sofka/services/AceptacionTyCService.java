@@ -5,6 +5,7 @@ import co.com.sofka.model.DTOTrucheli;
 import co.com.sofka.model.TipoDocumento;
 import co.com.sofka.repository.AceptacionRepository;
 import co.com.sofka.repository.TipoDocumentoRepository;
+import io.smallrye.common.annotation.Blocking;
 import io.smallrye.mutiny.Uni;
 import io.smallrye.mutiny.subscription.Cancellable;
 
@@ -28,7 +29,7 @@ public class AceptacionTyCService {
                     aceptacion.setFechaAceptacion(Instant.now());
                     if (aceptacion.getTipoDocumento().equalsIgnoreCase("Cedula")){
                         System.out.println("ENTRE AL IF  DE CEDULA ");
-                        return agregarAceptacionConCedula(aceptacion);
+                        return  repositorytipo.findByTipoDocumento("Cedula").map(tipoDocumento -> agregarAceptacionConCedula(tipoDocumento.getRegex()));
 
                     }
                     aceptacion.setFechaAceptacion(ZonedDateTime.now().toInstant());
@@ -36,9 +37,23 @@ public class AceptacionTyCService {
                 });
     }
 
+
+    @Blocking
     public Uni<DTOTrucheli> agregarAceptacionConCedula(AceptacionTyC aceptTyC){
-        String regex ="[0-9]{2}-PN-[0-9]{3}-[0-9]{4}";
-        Pattern pattern = Pattern.compile(regex);
+       // String regex ="[0-9]{2}-PN-[0-9]{3}-[0-9]{4}";
+        String aaa="aaaaa";
+
+
+        //String regex= repositorytipo.findByTipoDocumento("Cedula").map(tipoDocumento -> tipoDocumento).await().indefinitely().getRegex();
+
+
+       repositorytipo.findByTipoDocumento("Cedula").map(x->x.getRegex()).subscribe().with(s -> {
+
+       });
+      
+      
+        String regex="";
+        Pattern pattern = Pattern.compile(aaa);
         Matcher matcher = pattern.matcher(aceptTyC.getNumDoc());
         Boolean verificar = matcher.matches();
 
@@ -58,7 +73,7 @@ public class AceptacionTyCService {
     //int result2 = uni
         //        .flatMap(i -> Uni.createFrom().item(i + 1))
         //        .await().indefinitely();
-String regex= repositorytipo.findByTipoDocumento("Pasaporte").map(tipoDocumento -> tipoDocumento).toString();
+    String regex= repositorytipo.findByTipoDocumento("Pasaporte").map(tipoDocumento -> tipoDocumento).toString();
       //String regex = repositorytipo.findByTipoDocumento("Pasaporte").toString();
 
         System.out.println("aaaaaaaaaaaaaaaaAAAAAAAAAAAAAAAAAAA"+regex);

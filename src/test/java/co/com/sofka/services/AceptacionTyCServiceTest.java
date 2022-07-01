@@ -33,7 +33,8 @@ class AceptacionTyCServiceTest {
 
     private final String tipodoc = "Cedula";
     private final String tipodoc2 = "Pasaporte";
-
+    private final String regexCedula="[0-9]{2}-PN-[0-9]{3}-[0-9]{4}";
+    private String regexPasaporte="[a-zA-Z0-9-]{5,16}";
     private final String documento = "02-PN-010-1234";
     private final String documento2 = "dadasda111-";
 
